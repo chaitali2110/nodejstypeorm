@@ -18,45 +18,78 @@ var User = function(user)
 }
 User.getAllData =  async() =>
 {
-    const us = await userData.find();
-    return us;
+    try{
+        const us = await userData.find();
+        return us;
+    }catch(err){
+        return err;
+    }
+  
 }
 
 User.getDataById = async(id) =>{
-    const us = await userData.findOne({where: { id: id}});
-    return us;
+    try{
+        const us = await userData.findOne({where: { id: id}});
+        return us;
+    }catch(err){
+        return err;
+    }
 }
 
 User.addData = async(data) =>{
-    const us = await userData.save(data);
-    return us;
+    try{
+        const us = await userData.save(data);
+        return us;
+    }catch(err){
+        return err;
+    }
 }
 
 User.deleteData = async(id)=>{
-    const us = await userData.delete({id});
-    return us;
+    try{
+        const us = await userData.delete({id});
+        return us;
+    }catch(err){
+        err;
+    }
 }
 
 User.updateData = async(id,data)=>{
-    const user = await userData.findOne({where: { id: id}});
-    userData.merge(user, data);
-    const result = await userData.save(userData.merge(user, data));
-    return result;
+    try{
+        const user = await userData.findOne({where: { id: id}});
+        userData.merge(user, data);
+        const result = await userData.save(userData.merge(user, data));
+        return result;
+    }catch(err){
+        return err;
+    }
 }
 
 User.checkemail = async(email,username)=>{
-      const user = await userData.findOne({where: { email: email,username: username}});
-      return user;
+    try{
+        const user = await userData.findOne({where: { email: email,username: username}});
+        return user;
+    }catch(err){
+        return err;
+    }     
 }
 
 User.loginData = async(email,password)=>{
-    const user = await userData.findOne({where: { email: email}});
-    return user;
+    try{
+        const user = await userData.findOne({where: { email: email}});
+        return user;
+    }catch(err){
+        return err;
+    }
 }
 
 User.getData = async(verify_token)=>{
-    const user = await userData.findOne({where:{verify_token:verify_token}});
-    return user;
+    try{
+        const user = await userData.findOne({where:{verify_token:verify_token}});
+        return user;
+    }catch(err){
+        return err;
+    }
 }
 
 module.exports = User;

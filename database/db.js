@@ -1,10 +1,10 @@
 var connection = require("typeorm")
 var users = require("../entities/User");
-var depts = require("../entities/Department");
-var emps = require("./../entities/Employee");
+var cats = require("../entities/Categories");
+var pros = require("../entities/Products");
 // var student = require("./migrations/1664011904121-student");
-var department = require("./migrations/1664771736385-department");
-var employee = require("./migrations/1664784437027-employee");
+var categoryTable = require("./migrations/1666843339158-categories");
+var productTable = require("./migrations/1666843406469-products");
 
 var datasource = new connection.DataSource({
     type: "mysql",
@@ -13,9 +13,9 @@ var datasource = new connection.DataSource({
     password: "",
     database: "dborm",
     port:3306,
-    entities: [users,depts,emps],
-    // migrations: [student,department,employee],
-    migrations: [department,employee],
+    entities: [users,cats,pros],
+    // migrations: [student,category,product],
+    migrations: [categoryTable,productTable],
 })
 
 datasource.initialize()
